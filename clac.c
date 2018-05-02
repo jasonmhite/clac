@@ -310,6 +310,36 @@ static void process(sds word) {
 			b = pop(s0);
 			push(s0, pow(b, a));
 		}
+    } else if (!strcasecmp(word, "sqrt")) {
+		if (count(s0) > 0) {
+			push(s0, sqrt(pop(s0)));
+		}    
+    } else if (!strcasecmp(word, "cbrt")) {
+		if (count(s0) > 0) {
+			push(s0, cbrt(pop(s0)));
+		}    
+ 	} else if (!strcmp(word, "hypot")) {
+		if (count(s0) > 1) {
+			a = pop(s0);
+			b = pop(s0);
+			push(s0, hypot(b, a));
+		} 
+    } else if (!strcasecmp(word, "erf")) {
+		if (count(s0) > 0) {
+			push(s0, erf(pop(s0)));
+		}     
+    } else if (!strcasecmp(word, "erfc")) {
+		if (count(s0) > 0) {
+			push(s0, erfc(pop(s0)));
+		}       
+    } else if (!strcasecmp(word, "gamma")) {
+		if (count(s0) > 0) {
+			push(s0, tgamma(pop(s0)));
+		}       
+    } else if (!strcasecmp(word, "lgamma")) {
+		if (count(s0) > 0) {
+			push(s0, lgamma(pop(s0)));
+		}        
 	} else if (!strcasecmp(word, "sum")) {
 		push(s0, add(s0, count(s0)));
 	} else if (!strcasecmp(word, "add")) {
@@ -330,6 +360,18 @@ static void process(sds word) {
 		if (count(s0) > 0) {
 			push(s0, round(pop(s0)));
 		}
+ 	} else if (!strcasecmp(word, "pi")) {
+        push(s0, M_PI);
+    } else if (!strcasecmp(word, "deg2rad")) {
+		if (count(s0) > 0) {
+            a = pop(s0);
+			push(s0, 2.0 * M_PI * a / 360.);
+		}    
+    } else if (!strcasecmp(word, "rad2deg")) {
+		if (count(s0) > 0) {
+            a = pop(s0);
+			push(s0, a * 360 / (M_PI * 2.0));
+		}      
 	} else if (!strcasecmp(word, "sin")) {
 		if (count(s0) > 0) {
 			push(s0, sin(pop(s0)));
@@ -342,6 +384,50 @@ static void process(sds word) {
 		if (count(s0) > 0) {
 			push(s0, tan(pop(s0)));
 		}
+ 	} else if (!strcasecmp(word, "acos")) {
+		if (count(s0) > 0) {
+			push(s0, acos(pop(s0)));
+		} 
+  	} else if (!strcasecmp(word, "asin")) {
+		if (count(s0) > 0) {
+			push(s0, asin(pop(s0)));
+		}  
+   	} else if (!strcasecmp(word, "atan")) {
+		if (count(s0) > 0) {
+			push(s0, atan(pop(s0)));
+		}   
+ 	} else if (!strcmp(word, "atan2")) {
+		if (count(s0) > 1) {
+			a = pop(s0);
+			b = pop(s0);
+			push(s0, atan2(b, a));
+		} 
+    } else if (!strcasecmp(word, "sinh")) {
+		if (count(s0) > 0) {
+			push(s0, sinh(pop(s0)));
+		}    
+    } else if (!strcasecmp(word, "cosh")) {
+		if (count(s0) > 0) {
+			push(s0, cosh(pop(s0)));
+		}     
+    } else if (!strcasecmp(word, "tanh")) {
+		if (count(s0) > 0) {
+			push(s0, tanh(pop(s0)));
+		}     
+    } else if (!strcasecmp(word, "acosh")) {
+		if (count(s0) > 0) {
+			push(s0, acosh(pop(s0)));
+		}     
+    } else if (!strcasecmp(word, "asinh")) {
+		if (count(s0) > 0) {
+			push(s0, asinh(pop(s0)));
+		}     
+    } else if (!strcasecmp(word, "atanh")) {
+		if (count(s0) > 0) {
+			push(s0, atanh(pop(s0)));
+		}     
+  	} else if (!strcasecmp(word, "e")) {
+        push(s0, M_E); 
 	} else if (!strcasecmp(word, "ln")) {
 		if (count(s0) > 0) {
 			push(s0, log(pop(s0)));
@@ -350,6 +436,18 @@ static void process(sds word) {
 		if (count(s0) > 0) {
 			push(s0, log10(pop(s0)));
 		}
+    } else if (!strcasecmp(word, "exp")) {
+		if (count(s0) > 0) {
+			push(s0, exp(pop(s0)));
+		} 
+    } else if (!strcasecmp(word, "exp2")) {
+		if (count(s0) > 0) {
+			push(s0, exp2(pop(s0)));
+		}  
+    } else if (!strcasecmp(word, "log2")) {
+		if (count(s0) > 0) {
+			push(s0, log2(pop(s0)));
+		}   
 	} else if (!strcasecmp(word, "!")) {
 		if (count(s0) > 0) {
 			a = pop(s0);
